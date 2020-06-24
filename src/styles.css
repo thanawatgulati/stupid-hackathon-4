@@ -1,11 +1,12 @@
 .custom-file-input {
+  width: 650px;
   color: transparent;
 }
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
 .custom-file-input::before {
-  content: "YES !!!";
+  content: "CLICK ME !!!";
   color: white;
   display: inline-block;
   background-image: linear-gradient(
@@ -19,16 +20,17 @@
     violet
   );
   border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
+  border-radius: 100px;
+
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
   text-shadow: 1px 1px #fff;
   font-weight: 700;
-  font-size: 10pt;
+  font-size: 70pt;
 }
+
 .custom-file-input:hover::before {
   border-color: palevioletred;
 }
@@ -48,6 +50,16 @@
   );
 }
 
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  background: red;
+}
+
 body {
-  padding: 20px;
+  background: coral;
+}
+.fy {
+  font-size: 80pt;
 }
