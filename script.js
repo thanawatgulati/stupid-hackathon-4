@@ -43,13 +43,13 @@ async function start() {
 }
 
 function loadLabeledImages() {
-  const labels = ["Bengal", "Persian"];
+  const labels = ["Prayuth", "Yingluck"];
   return Promise.all(
     labels.map(async (label) => {
       const descriptions = [];
       for (let i = 1; i <= 4; i++) {
         const img = await faceapi.fetchImage(
-          `https://raw.githubusercontent.com/thanawatgulati/stupid-hackathon/master/labeled_images/${label}/${i}.jpg`
+          `https://raw.githubusercontent.com/thanawatgulati/stupid-hackathon-4/master/labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
