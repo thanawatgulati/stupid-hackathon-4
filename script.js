@@ -49,7 +49,7 @@ function loadLabeledImages() {
       const descriptions = [];
       for (let i = 1; i <= 2; i++) {
         const img = await faceapi.fetchImage(
-          `http://localhost:5500/labeled_images/${label}/${i}.jpg`
+          `http://wanttobecat.netlify.app/labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
