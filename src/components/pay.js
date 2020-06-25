@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import QrReader from "react-qr-reader";
 import Money from "./money";
 
