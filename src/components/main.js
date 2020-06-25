@@ -6,7 +6,6 @@ import Money from "./money";
 export default function Main() {
   return (
     <div>
-      <p className="text-right text-xl px-2 mt-4">คุณ สมชาย จันอังคาร</p>
       <Money />
       <div className="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4 w-5/6 mx-auto mb-10">
         <Link

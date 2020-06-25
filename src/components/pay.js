@@ -20,7 +20,6 @@ export default class Pay extends Component {
   render() {
     return (
       <div>
-        <p className="text-right text-xl px-2 mt-4">คุณ สมชาย จันอังคาร</p>
         <Money />
         <QrReader
           delay={300}
@@ -29,6 +28,11 @@ export default class Pay extends Component {
           style={{ width: "100%" }}
         />
         <p className="">{this.state.result}</p>
+        <center>
+          <button className="bg-blue-400 text-white p-4 shadow-lg rounded-full w-3/6 ">
+            ชำระเงิน
+          </button>
+        </center>
       </div>
     );
   }
