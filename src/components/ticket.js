@@ -9,8 +9,8 @@ export default function Ticket() {
       </div>
       <div>
         <p className="text-4xl pt-1 px-3 mb-0 text-right">25/06/63</p>
-        <p className="text-2xl px-3 mb-0  text-right">หมายเลขบัตร : 00001</p>
-        <p className="text-2xl px-3 mb-0  text-right">เวลา : 00.01 น.</p>
+        <p className="text-xl px-3 mb-0 text-right">หมายเลขบัตร : 00001</p>
+        <p className="text-xl px-3 mb-0 text-right">เวลา : 00.01 น.</p>
       </div>
     </div>
   );
