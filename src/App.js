@@ -28,7 +28,7 @@ export default class App extends Component {
   state = { isSignIn: false };
   uiConfig = {
     signInFlow: "popup",
-    signInOptions: [firebase.auth.FacebookAuthProvider.PROVIDER_ID],
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
       signInSuccess: () => false,
     },
