@@ -10,6 +10,7 @@ export default function Login({ uiConfig }) {
         <p className="text-6xl">MEYPAY</p>
         <p>ให้การขึ้นรถเมล์ของคุณเป็นเรื่องยาก</p>
         <StyledFirebaseAuth
+          className="mt-20"
           uiConfig={uiConfig}
           firebaseAuth={firebase.auth()}
         />
