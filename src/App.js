@@ -13,6 +13,7 @@ export default function App() {
         <Route exact path="/main" component={Main} />
         <Route exact path="/pay" component={Pay} />
         <Route exact path="/topup" component={Topup} />
+        <Route exact path="*" component={Login} />
       </Switch>
     </Router>
   );
