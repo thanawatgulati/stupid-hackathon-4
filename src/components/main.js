@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { Component } from "react";
 import Ticket from "./ticket";
 import { Link } from "react-router-dom";
@@ -13,13 +14,13 @@ export default class Main extends Component {
             to="/pay"
             className="mt-10 text-white bg-blue-500 p-4 rounded-full shadow-lg hover:bg-blue-700 hover:text-white text-center"
           >
-            <button>จ่ายเงิน</button>
+            <button>💸 : จ่ายเงิน</button>
           </Link>
           <Link
             to="/topup"
             className="mt-10 text-white bg-gray-500 p-4 rounded-full shadow-lg hover:bg-white hover:text-black text-center"
           >
-            <button>เติมเงิน</button>
+            <button>🧧 : เติมเงิน</button>
           </Link>
         </div>
 
