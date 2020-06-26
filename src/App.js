@@ -10,9 +10,9 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route path="/main" component={Main} />
-        <Route path="/pay" component={Pay} />
-        <Route path="/topup" component={Topup} />
+        <Route exact path="/main" component={Main} />
+        <Route exact path="/pay" component={Pay} />
+        <Route exact path="/topup" component={Topup} />
       </Switch>
     </Router>
   );
