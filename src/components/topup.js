@@ -29,7 +29,7 @@ export default class Topup extends Component {
   render() {
     return (
       <>
-        <Money {...this.props} />
+        <Money />
         <p className="text-center mt-5 text-2xl">เติมเงินเข้ากระเป๋า</p>
         <center>
           <input

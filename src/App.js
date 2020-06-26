@@ -78,15 +78,9 @@ export default class App extends Component {
             <Route exact path="/">
               <Login uiConfig={this.uiConfig} />
             </Route>
-            <SecuredRoute exact path="/main">
-              <Main {...this.state} />
-            </SecuredRoute>
-            <SecuredRoute exact path="/pay">
-              <Pay {...this.state} />
-            </SecuredRoute>
-            <SecuredRoute exact path="/topup">
-              <Topup {...this.state} />
-            </SecuredRoute>
+            <SecuredRoute exact path="/main" component={Main} />
+            <SecuredRoute exact path="/pay" component={Pay} />
+            <SecuredRoute exact path="/topup" component={Topup} />
             <Route exact path="*" component={Login} />
           </Switch>
         </Router>
