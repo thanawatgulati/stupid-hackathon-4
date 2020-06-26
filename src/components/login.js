@@ -1,6 +1,5 @@
 import React from "react";
 import "../assets/login.css";
-import { Link } from "react-router-dom";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
 
