@@ -1,28 +1,34 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import Login from "./components/login";
 import Main from "./components/main";
 import Pay from "./components/pay";
 import Topup from "./components/topup";
 import firebase from "firebase";
 
-// const SecuredRoute = ({ component: Component, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={(props) =>
-//       isLoggedIn() === true ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect to="/login" />
-//       )
-//     }
-//   />
-// );
-
 firebase.initializeApp({
   apiKey: "AIzaSyCtUoO5drwqnPKTN8DxOhz7IWumDyOSnfE",
   authDomain: "meypay-sht4.firebaseapp.com",
 });
+
+const isLoggedIn = () => {
+  return localStorage.getItem("firebaseui::rememberedAccounts") !== null;
+};
+
+// this is bad way
+const SecuredRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      isLoggedIn() === true ? <Component {...props} /> : <Redirect to="/" />
+    }
+  />
+);
 
 export default class App extends Component {
   state = { isSignIn: false };
@@ -47,9 +53,9 @@ export default class App extends Component {
             <Route exact path="/">
               <Login uiConfig={this.uiConfig} />
             </Route>
-            <Route exact path="/main" component={Main} />
-            <Route exact path="/pay" component={Pay} />
-            <Route exact path="/topup" component={Topup} />
+            <SecuredRoute exact path="/main" component={Main} />
+            <SecuredRoute exact path="/pay" component={Pay} />
+            <SecuredRoute exact path="/topup" component={Topup} />
             <Route exact path="*" component={Login} />
           </Switch>
         </Router>

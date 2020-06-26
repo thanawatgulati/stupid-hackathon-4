@@ -2,9 +2,16 @@ import React from "react";
 import "../assets/login.css";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
+import { Redirect } from "react-router-dom";
+
+const isLoggedIn = () => {
+  return localStorage.getItem("firebaseui::rememberedAccounts") !== null;
+};
 
 export default function Login({ uiConfig }) {
-  return (
+  return isLoggedIn() !== false ? (
+    <Redirect to="/main" />
+  ) : (
     <div className="body-login">
       <div className="text-center text-white mt-40">
         <p className="text-6xl">MEYPAY</p>
