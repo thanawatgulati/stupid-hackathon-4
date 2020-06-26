@@ -59,6 +59,7 @@ export default class App extends Component {
           usersRef.set({
             email: this.state.email,
             name: this.state.name,
+            amount: 0,
           }); // create the document
         }
       });
