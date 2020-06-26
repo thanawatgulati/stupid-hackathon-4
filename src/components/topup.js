@@ -13,6 +13,7 @@ export default class Topup extends Component {
     cantTopup: false,
   };
   Checkout = () => {
+    // eslint-disable-next-line
     var dataTickets = [];
     const db = firebase.firestore();
     const usersRef = db.collection("users").doc(this.state.email);
@@ -22,16 +23,10 @@ export default class Topup extends Component {
         var res = topupticket.split("-");
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
-            doc.data().topupticket.map((r) => {
-              dataTickets.push(r);
-            });
-            dataTickets.unshift({
-              busNum: res[0],
-            });
             if (!this.state.change && res[0] === "topup") {
               usersRef.set(
                 {
-                  amount: doc.data().amount + res[1],
+                  amount: doc.data().amount + parseInt(res[1]),
                 },
                 { merge: true }
               ); //
@@ -90,12 +85,6 @@ export default class Topup extends Component {
           {this.state.cantTopup && (
             <p className="text-red-900 mt-6">QRCODE ไม่ถูกต้อง</p>
           )}
-          <input
-            className="mt-6 shadow appearance-none border border-gray-500 rounded py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline w-3/5"
-            id="password"
-            type="number"
-            placeholder="100"
-          />
           <QrReader
             delay={300}
             onError={this.handleError}

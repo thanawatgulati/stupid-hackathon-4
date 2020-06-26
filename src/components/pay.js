@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import QrReader from "react-qr-reader";
 import Money from "./money";
 import firebase from "firebase";
+import { Link } from "react-router-dom";
 
 export default class Pay extends Component {
   state = {
@@ -11,9 +12,12 @@ export default class Pay extends Component {
     button: false,
     change: false,
     cantPay: false,
+    showScan: true,
+    pay: true,
   };
 
   Checkout = () => {
+    this.setState({ pay: false });
     var dataTickets = [];
     const db = firebase.firestore();
     const usersRef = db.collection("users").doc(this.state.email);
@@ -24,6 +28,7 @@ export default class Pay extends Component {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
             if (doc.data().ticket !== undefined) {
+              // eslint-disable-next-line
               doc.data().ticket.map((r) => {
                 dataTickets.push(r);
               });
@@ -46,7 +51,6 @@ export default class Pay extends Component {
               ); //
               this.setState({ change: true });
             }
-            this.props.history.push("/main");
           });
         }
       }
@@ -57,6 +61,7 @@ export default class Pay extends Component {
       this.setState({
         result: data,
         button: true,
+        showScan: false,
       });
     }
   };
@@ -78,27 +83,40 @@ export default class Pay extends Component {
     return (
       <div>
         <Money {...this.props} />
-        <QrReader
-          delay={300}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ width: "100%" }}
-        />
+        {this.state.showScan && (
+          <QrReader
+            delay={300}
+            onError={this.handleError}
+            onScan={this.handleScan}
+            style={{ width: "100%" }}
+          />
+        )}
         <center>
           {this.state.cantPay && (
             <p className="text-red-900 mt-6">ยอดเงินคงเหลือในระบบไม่เพียงพอ</p>
           )}
-          {!this.state.button ? (
-            <button className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 disabled mt-10">
-              ชำระเงิน
-            </button>
-          ) : (
+          {this.state.button && this.state.pay && (
             <button
               className="bg-blue-400 text-white p-4 shadow-lg rounded-full w-3/6 mt-10"
               onClick={this.Checkout}
             >
               ชำระเงิน
             </button>
+          )}
+          {!this.state.pay && (
+            <div>
+              <p className="text-2xl text-center mt-10">
+                ขอบคุณที่ซื้อตั๋ว ภาษีของท่านจะถูกพวกเราใช้
+              </p>
+              <Link to="/main">
+                <button
+                  className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 mt-10"
+                  onClick={this.Checkout}
+                >
+                  กลับสู่หน้าหลัก
+                </button>
+              </Link>
+            </div>
           )}
         </center>
       </div>

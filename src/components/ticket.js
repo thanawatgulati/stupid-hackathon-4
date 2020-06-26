@@ -4,8 +4,11 @@ import firebase from "firebase";
 var dataTickets = [];
 
 export default class Ticket extends Component {
+  componentDidUpdate = () => {
+    dataTickets = [];
+  };
   componentDidMount = () => {
-    this.render();
+    dataTickets = [];
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({
         isSignIn: !!user,
@@ -19,6 +22,7 @@ export default class Ticket extends Component {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
             if (doc.data().ticket) {
+              // eslint-disable-next-line
               doc.data().ticket.map((r) => {
                 dataTickets.push(r);
               });
