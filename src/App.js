@@ -14,6 +14,7 @@ import firebase from "firebase";
 firebase.initializeApp({
   apiKey: "AIzaSyCtUoO5drwqnPKTN8DxOhz7IWumDyOSnfE",
   authDomain: "meypay-sht4.firebaseapp.com",
+  projectId: "meypay-sht4",
 });
 
 const isLoggedIn = () => {
@@ -31,7 +32,7 @@ const SecuredRoute = ({ component: Component, ...rest }) => (
 );
 
 export default class App extends Component {
-  state = { isSignIn: false };
+  state = { isSignIn: false, email: "", name: "", amount: 10 };
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
@@ -41,7 +42,27 @@ export default class App extends Component {
   };
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ isSignIn: !!user });
+      this.setState({
+        isSignIn: !!user,
+        name: firebase.auth().currentUser.displayName,
+        email: firebase.auth().currentUser.email,
+      });
+      const db = firebase.firestore();
+      const usersRef = db.collection("users").doc(this.state.email);
+
+      usersRef.get().then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          usersRef.onSnapshot((doc) => {
+            // do stuff with the data
+          });
+        } else {
+          usersRef.set({
+            email: this.state.email,
+            name: this.state.name,
+          }); // create the document
+        }
+      });
+      console.log(this.state.name);
       console.log(user);
     });
   };

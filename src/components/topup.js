@@ -1,5 +1,8 @@
 import React from "react";
 import Money from "./money";
+// import Script from "react-load-script";
+
+// let OmiseCard;
 
 export default function Topup() {
   return (
@@ -13,9 +16,24 @@ export default function Topup() {
           type="number"
           placeholder="100"
         />
-        <button className="mt-6 bg-blue-400 text-white p-4 shadow-lg rounded-full w-3/6 ">
-          เติมเงิน
-        </button>
+
+        <div className="own-form">
+          {/* <Script
+            url="https://cdn.omise.co/omise.js"
+            onLoad={this.handleScriptLoad}
+          />
+          <form>
+            <button
+              id="credit-card"
+              className="mt-6 bg-blue-400 text-white p-4 shadow-lg rounded-full w-3/6 "
+              type="button"
+              //disabled={cart.amount === 0}
+              onClick={this.handleClick}
+            >
+              เติมเงิน
+            </button>
+          </form> */}
+        </div>
       </center>
     </>
   );
