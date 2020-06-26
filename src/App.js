@@ -67,7 +67,6 @@ export default class App extends Component {
           }); // create the document
         }
       });
-      console.log(user);
     });
   };
   render() {

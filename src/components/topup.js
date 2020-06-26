@@ -10,7 +10,7 @@ export default class Topup extends Component {
     name: "",
     button: false,
     change: false,
-    cantTopup: false,
+    showScan: true,
   };
   Checkout = () => {
     // eslint-disable-next-line
@@ -68,6 +68,7 @@ export default class Topup extends Component {
       this.setState({
         result: data,
         button: true,
+        showScan: false,
       });
     }
   };
@@ -82,15 +83,14 @@ export default class Topup extends Component {
 
         <p className="text-center mt-5 text-2xl">เติมเงินเข้ากระเป๋า</p>
         <center>
-          {this.state.cantTopup && (
-            <p className="text-red-900 mt-6">QRCODE ไม่ถูกต้อง</p>
+          {this.state.showScan && (
+            <QrReader
+              delay={300}
+              onError={this.handleError}
+              onScan={this.handleScan}
+              style={{ width: "100%" }}
+            />
           )}
-          <QrReader
-            delay={300}
-            onError={this.handleError}
-            onScan={this.handleScan}
-            style={{ width: "100%" }}
-          />
           <div>
             {!this.state.button ? (
               <button className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 disabled mt-10">

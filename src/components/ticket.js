@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 
-var dataTickets = [];
-
 export default class Ticket extends Component {
-  componentDidUpdate = () => {
-    dataTickets = [];
-  };
+  state = { dataTickets: [] };
   componentDidMount = () => {
-    dataTickets = [];
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({
         isSignIn: !!user,
@@ -22,29 +17,36 @@ export default class Ticket extends Component {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
             if (doc.data().ticket) {
-              // eslint-disable-next-line
-              doc.data().ticket.map((r) => {
-                dataTickets.push(r);
-              });
+              doc
+                .data()
+                .ticket.map((r) =>
+                  this.setState({ dataTickets: [...this.state.dataTickets, r] })
+                );
             }
           });
+          console.log(this.state.dataTickets);
         }
       });
     });
   };
   render() {
-    return dataTickets === []
+    return this.state.dataTickets === []
       ? "No Result."
-      : dataTickets.map((r) => (
-          <div className="grid grid-flow-col bg-blue-400 rounded-lg text-white mt-4">
+      : this.state.dataTickets.map((r, index) => (
+          <div
+            key={index}
+            className="grid grid-flow-col bg-blue-400 rounded-lg text-white mt-4"
+          >
             <div>
               <p className="text-2xl pt-6 px-3 mb-0">สาย</p>
               <p className="text-5xl px-3 mt-auto">{r.busNum}</p>
             </div>
             <div>
-              <p className="text-4xl pt-1 px-3 mb-0 text-right">{}</p>
-              <p className="text-lg px-3 mb-0 text-right">หมายเลขบัตร : {}</p>
-              <p className="text-lg px-3 mb-0 text-right">เวลา : {}</p>
+              <p className="text-4xl pt-1 px-3 mb-0 text-right">{r.Date}</p>
+              <p className="text-lg px-3 mb-0 text-right">
+                หมายเลขบัตร : {r.ticketNo}
+              </p>
+              <p className="text-lg px-3 mb-0 text-right">เวลา : {r.time}</p>
             </div>
           </div>
         ));

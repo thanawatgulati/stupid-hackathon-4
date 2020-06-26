@@ -27,29 +27,37 @@ export default class Pay extends Component {
         var res = ticket.split("-");
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
-            if (doc.data().ticket !== undefined) {
-              // eslint-disable-next-line
-              doc.data().ticket.map((r) => {
-                dataTickets.push(r);
-              });
-            }
-            dataTickets.unshift({
-              busNum: res[0],
-              ticketNo: Math.floor(Math.random() * 9999),
-              Date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
-              time: `${new Date().getHours()} : ${new Date().getMinutes()} น.`,
-            });
-            if (!this.state.change) {
-              usersRef.set(
-                {
-                  name: firebase.auth().currentUser.displayName,
-                  email: firebase.auth().currentUser.email,
-                  amount: doc.data().amount - res[1],
-                  ticket: dataTickets,
-                },
-                { merge: true }
-              ); //
-              this.setState({ change: true });
+            if (doc.data().amount >= parseInt(res[1])) {
+              if (doc.data().ticket === undefined) {
+                dataTickets.push({
+                  busNum: res[0],
+                  ticketNo: Math.floor(Math.random() * 9999),
+                  Date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+                  time: `${new Date().getHours()} : ${new Date().getMinutes()} น.`,
+                });
+              } else {
+                doc.data().ticket.map((r) => dataTickets.push(r));
+                dataTickets.unshift({
+                  busNum: res[0],
+                  ticketNo: Math.floor(Math.random() * 9999),
+                  Date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+                  time: `${new Date().getHours()} : ${new Date().getMinutes()} น.`,
+                });
+              }
+              if (!this.state.change) {
+                usersRef.set(
+                  {
+                    name: firebase.auth().currentUser.displayName,
+                    email: firebase.auth().currentUser.email,
+                    amount: doc.data().amount - res[1],
+                    ticket: dataTickets,
+                  },
+                  { merge: true }
+                ); //
+                this.setState({ change: true });
+              }
+            } else {
+              this.setState({ cantPay: true });
             }
           });
         }
@@ -95,7 +103,7 @@ export default class Pay extends Component {
           {this.state.cantPay && (
             <p className="text-red-900 mt-6">ยอดเงินคงเหลือในระบบไม่เพียงพอ</p>
           )}
-          {this.state.button && this.state.pay && (
+          {((this.state.button && this.state.pay) || !this.state.cantPay) && (
             <button
               className="bg-blue-400 text-white p-4 shadow-lg rounded-full w-3/6 mt-10"
               onClick={this.Checkout}
@@ -103,21 +111,22 @@ export default class Pay extends Component {
               ชำระเงิน
             </button>
           )}
-          {!this.state.pay && (
+          {
             <div>
-              <p className="text-2xl text-center mt-10">
-                ขอบคุณที่ซื้อตั๋ว ภาษีของท่านจะถูกพวกเราใช้
-              </p>
-              <Link to="/main">
-                <button
-                  className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 mt-10"
-                  onClick={this.Checkout}
-                >
-                  กลับสู่หน้าหลัก
-                </button>
-              </Link>
+              {this.state.cantPay && (
+                <p className="text-2xl text-center mt-10">
+                  ขอบคุณที่ซื้อตั๋ว ภาษีของท่านจะถูกพวกเราใช้
+                </p>
+              )}
+              {(this.state.cantPay || !this.state.pay) && (
+                <Link to="/main">
+                  <button className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 mt-10">
+                    กลับสู่หน้าหลัก
+                  </button>
+                </Link>
+              )}
             </div>
-          )}
+          }
         </center>
       </div>
     );
