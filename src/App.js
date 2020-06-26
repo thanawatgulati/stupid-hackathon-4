@@ -9,11 +9,10 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={Login} />
         <Route path="/main" component={Main} />
         <Route path="/pay" component={Pay} />
         <Route path="/topup" component={Topup} />
-        <Route path="*" component={Login} />
       </Switch>
     </Router>
   );
