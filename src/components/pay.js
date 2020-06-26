@@ -20,7 +20,7 @@ export default class Pay extends Component {
   render() {
     return (
       <div>
-        <Money />
+        <Money {...this.props} />
         <QrReader
           delay={300}
           onError={this.handleError}

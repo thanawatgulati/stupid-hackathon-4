@@ -32,7 +32,7 @@ const SecuredRoute = ({ component: Component, ...rest }) => (
 );
 
 export default class App extends Component {
-  state = { isSignIn: false, email: "", name: "", amount: 10 };
+  state = { isSignIn: false, email: "", name: "" };
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
@@ -53,7 +53,11 @@ export default class App extends Component {
       usersRef.get().then((docSnapshot) => {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
-            // do stuff with the data
+            this.setState({
+              email: doc.data().email,
+              name: doc.data().name,
+              amount: doc.data().amount,
+            });
           });
         } else {
           usersRef.set({
@@ -63,7 +67,6 @@ export default class App extends Component {
           }); // create the document
         }
       });
-      console.log(this.state.name);
       console.log(user);
     });
   };
@@ -75,9 +78,15 @@ export default class App extends Component {
             <Route exact path="/">
               <Login uiConfig={this.uiConfig} />
             </Route>
-            <SecuredRoute exact path="/main" component={Main} />
-            <SecuredRoute exact path="/pay" component={Pay} />
-            <SecuredRoute exact path="/topup" component={Topup} />
+            <SecuredRoute exact path="/main">
+              <Main {...this.state} />
+            </SecuredRoute>
+            <SecuredRoute exact path="/pay">
+              <Pay {...this.state} />
+            </SecuredRoute>
+            <SecuredRoute exact path="/topup">
+              <Topup {...this.state} />
+            </SecuredRoute>
             <Route exact path="*" component={Login} />
           </Switch>
         </Router>

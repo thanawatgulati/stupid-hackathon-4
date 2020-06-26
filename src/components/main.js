@@ -3,10 +3,10 @@ import Ticket from "./ticket";
 import { Link } from "react-router-dom";
 import Money from "./money";
 
-export default function Main() {
+export default function Main(props) {
   return (
     <div>
-      <Money />
+      <Money {...props} />
       <div className="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4 w-5/6 mx-auto mb-10">
         <Link
           to="/pay"
