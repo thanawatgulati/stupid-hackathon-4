@@ -52,11 +52,14 @@ export default class Topup extends Component {
       usersRef.get().then((docSnapshot) => {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
-            usersRef.set({
-              email: this.state.email,
-              name: this.state.name,
-              amount: doc.data().amount,
-            }); //
+            usersRef.set(
+              {
+                email: this.state.email,
+                name: this.state.name,
+                amount: doc.data().amount,
+              },
+              { merge: true }
+            );
           });
         }
       });

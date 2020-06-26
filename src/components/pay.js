@@ -56,6 +56,7 @@ export default class Pay extends Component {
                 ); //
                 this.setState({ change: true });
               }
+              this.props.history.push("/main");
             } else {
               this.setState({ cantPay: true });
             }
@@ -118,7 +119,7 @@ export default class Pay extends Component {
                   ขอบคุณที่ซื้อตั๋ว ภาษีของท่านจะถูกพวกเราใช้
                 </p>
               )}
-              {(this.state.cantPay || !this.state.pay) && (
+              {this.state.cantPay && (
                 <Link to="/main">
                   <button className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 mt-10">
                     กลับสู่หน้าหลัก

@@ -28,7 +28,7 @@ export default class Money extends Component {
         <div className="bg-blue-400 p-6 px-16 mt-4">
           <p className="text-white text-center text-2xl">เงินในกระเป๋าคุณมี</p>
           <p className="text-white text-center lg:text-5xl text-3xl ml-10">
-            {this.state.amount} บาท
+            {this.state.amount} บาท.
           </p>
         </div>
       </div>
