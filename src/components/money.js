@@ -27,6 +27,16 @@ export default class Money extends Component {
       <div>
         <p className="text-right text-xl px-2 mt-4">
           👨‍💻 : {this.state.name === "" ? "Loading...." : this.state.name}
+          <button
+            className="text-white text-sm bg-red-800 p-2 rounded-full ml-2"
+            onClick={() => {
+              firebase.auth().signOut();
+              localStorage.clear();
+              window.location.reload();
+            }}
+          >
+            sign out
+          </button>
         </p>
         <div className="bg-blue-400 p-6 px-16 mt-4">
           <p className="text-white text-center text-2xl">
