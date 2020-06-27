@@ -29,7 +29,7 @@ export default class Pay extends Component {
         var res = ticket.split("-");
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
-            if (doc.data().amount >= parseInt(res[1])) {
+            if (doc.data().amount >= parseInt(res[1]) && res[0] !== "topup") {
               if (doc.data().ticket === undefined) {
                 dataTickets.push({
                   busNum: res[0],
