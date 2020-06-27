@@ -114,7 +114,7 @@ export default class Pay extends Component {
           )}
           {
             <div>
-              {!this.state.cantPay && (
+              {!this.state.cantPay && !this.state.pay && (
                 <p className="text-2xl text-center mt-10">
                   ขอบคุณที่ซื้อตั๋ว ภาษีของท่านจะถูกพวกเราใช้
                 </p>
