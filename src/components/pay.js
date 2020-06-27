@@ -50,7 +50,7 @@ export default class Pay extends Component {
                 usersRef.set(
                   {
                     name: firebase.auth().currentUser.displayName,
-                    email: firebase.auth().currentUser.email,
+                    email: firebase.auth().currentUser.uid,
                     amount: doc.data().amount - res[1],
                     ticket: dataTickets,
                   },
@@ -85,7 +85,7 @@ export default class Pay extends Component {
       this.setState({
         isSignIn: !!user,
         name: firebase.auth().currentUser.displayName,
-        email: firebase.auth().currentUser.email,
+        email: firebase.auth().currentUser.uid,
       });
     });
   };

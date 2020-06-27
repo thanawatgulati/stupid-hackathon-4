@@ -36,7 +36,10 @@ export default class App extends Component {
   state = { isSignIn: false, email: "", name: "" };
   uiConfig = {
     signInFlow: "popup",
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    ],
     callbacks: {
       signInSuccess: () => false,
     },
@@ -46,7 +49,7 @@ export default class App extends Component {
       this.setState({
         isSignIn: !!user,
         name: firebase.auth().currentUser.displayName,
-        email: firebase.auth().currentUser.email,
+        email: firebase.auth().currentUser.uid,
       });
       const db = firebase.firestore();
       const usersRef = db.collection("users").doc(this.state.email);

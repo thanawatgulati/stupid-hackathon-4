@@ -11,7 +11,7 @@ export default class Money extends Component {
       this.setState({
         isSignIn: !!user,
         name: firebase.auth().currentUser.displayName,
-        email: firebase.auth().currentUser.email,
+        email: firebase.auth().currentUser.uid,
       });
       const db = firebase.firestore();
       const usersRef = db.collection("users").doc(this.state.email);
