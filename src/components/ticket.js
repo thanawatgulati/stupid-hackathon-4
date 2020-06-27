@@ -47,7 +47,7 @@ export default class Ticket extends Component {
             <div>
               <p className="text-3xl pt-1 px-3 mb-0 text-right">{r.Date}</p>
               <p className="text-lg px-3 mb-0 text-right">
-                หมายเลขบัตร : {r.ticketNo}
+                เลขบัตร : {r.ticketNo}
               </p>
               <p className="text-lg px-3 mb-0 text-right">เวลา : {r.time}</p>
             </div>
