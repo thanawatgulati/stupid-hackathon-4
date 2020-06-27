@@ -114,11 +114,11 @@ export default class Pay extends Component {
           )}
           {
             <div>
-              {!this.state.cantPay && !this.state.pay && (
+              {/* {!this.state.cantPay && !this.state.pay && (
                 <p className="text-2xl text-center mt-10">
                   ขอบคุณที่ซื้อตั๋ว ภาษีของท่านจะถูกพวกเราใช้
                 </p>
-              )}
+              )} */}
               {this.state.cantPay && (
                 <Link to="/main">
                   <button className="bg-gray-500 text-white p-4 shadow-lg rounded-full w-3/6 mt-10">
