@@ -3,6 +3,7 @@ import Money from "./money";
 import firebase from "firebase/app";
 import QrReader from "react-qr-reader";
 require("firebase/firestore");
+require("firebase/auth");
 
 export default class Topup extends Component {
   state = {

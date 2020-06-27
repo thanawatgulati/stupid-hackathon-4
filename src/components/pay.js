@@ -4,6 +4,7 @@ import Money from "./money";
 import firebase from "firebase/app";
 import { Link } from "react-router-dom";
 require("firebase/firestore");
+require("firebase/auth");
 
 export default class Pay extends Component {
   state = {

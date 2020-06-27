@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
 require("firebase/firestore");
+require("firebase/auth");
 
 export default class Ticket extends Component {
   state = { dataTickets: [] };

@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
 require("firebase/firestore");
+require("firebase/auth");
 
 export default class Money extends Component {
   state = { amount: 0, email: "", name: "" };
