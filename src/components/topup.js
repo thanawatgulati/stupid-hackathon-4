@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Money from "./money";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import QrReader from "react-qr-reader";
+require("firebase/firestore");
 
 export default class Topup extends Component {
   state = {

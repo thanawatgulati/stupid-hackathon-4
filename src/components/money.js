@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { Component } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
+require("firebase/firestore");
 
 export default class Money extends Component {
   state = { amount: 0, email: "", name: "" };

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import QrReader from "react-qr-reader";
 import Money from "./money";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { Link } from "react-router-dom";
+require("firebase/firestore");
 
 export default class Pay extends Component {
   state = {

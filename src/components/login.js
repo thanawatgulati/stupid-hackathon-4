@@ -1,8 +1,9 @@
 import React from "react";
 import "../assets/login.css";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { Redirect } from "react-router-dom";
+require("firebase/auth");
 
 const isLoggedIn = () => {
   return localStorage.getItem("firebaseui::rememberedAccounts") !== null;

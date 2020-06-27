@@ -10,6 +10,7 @@ import Main from "./components/main";
 import Pay from "./components/pay";
 import Topup from "./components/topup";
 import firebase from "firebase";
+require("firebase/auth");
 
 firebase.initializeApp({
   apiKey: "AIzaSyCtUoO5drwqnPKTN8DxOhz7IWumDyOSnfE",
