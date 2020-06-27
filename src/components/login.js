@@ -22,6 +22,7 @@ export default function Login({ uiConfig }) {
           uiConfig={uiConfig}
           firebaseAuth={firebase.auth()}
         />
+        <p className="text-md pt-4">ระบบ Login อิ่นๆอยู่ระหว่างการพัฒนา</p>
       </div>
     </div>
   );
