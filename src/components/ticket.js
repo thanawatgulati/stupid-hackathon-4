@@ -41,7 +41,7 @@ export default class Ticket extends Component {
           >
             <div>
               {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-              <p className="text-2xl pt-6 px-3 mb-0">🚌 สาย</p>
+              <p className="text-2xl pt-6 px-3 mb-0">สาย</p>
               <p className="text-5xl px-3 mt-auto">{r.busNum}</p>
             </div>
             <div>
