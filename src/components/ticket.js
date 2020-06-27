@@ -45,11 +45,12 @@ export default class Ticket extends Component {
               <p className="text-5xl px-3 mt-auto">{r.busNum}</p>
             </div>
             <div>
-              <p className="text-4xl pt-1 px-3 mb-0 text-right">{r.Date}</p>
+              <p className="text-4xl pt-1 px-3 mb-0 text-right">🗓 {r.Date}</p>
               <p className="text-lg px-3 mb-0 text-right">
-                หมายเลขบัตร : {r.ticketNo}
+                🎟 หมายเลขบัตร : {r.ticketNo}
               </p>
-              <p className="text-lg px-3 mb-0 text-right">เวลา : {r.time}</p>
+              {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+              <p className="text-lg px-3 mb-0 text-right">🕐 เวลา : {r.time}</p>
             </div>
           </div>
         ));
